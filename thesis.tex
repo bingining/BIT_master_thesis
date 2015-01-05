@@ -1,0 +1,203 @@
+% !Mode:: "TeX:UTF-8" 
+% 以上一行不可删除，是为了确保WinEdit能够以UTF-8的格式打开本文件。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Read me %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 这是北京理工大学硕士研究生毕业论文的模板。
+% 参考资料：北京理工大学博士、硕士学位论文撰写规范
+% 具体规范见：http://www.bitme.com.cn/peiyang/2009-11-13/170.html
+%
+% 本模板在以下环境已测试可以编译通过：
+% 操作系统：linux（ubuntu和archlinux）
+% 文本编辑器：Texmaker
+% LaTex编译选项：XeLaTex（必须用XeTex）
+%
+% 本模板最初由大眼小蚂蚁根据交大的模板修改得到，参见：
+% https://code.google.com/p/bit-master-thesis-latex/
+%
+% 此版本由bingining做了大幅度改动，使得与学校所给的Word模板更一致。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 导言 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[twoside]{BitMasterThesis}
+% twoside对应双面排版；如需单面排版，请用oneside选项；
+% 请尽量使用twoside选项，因为学校的规范里面明确要求应该双面打印：
+%	"论文稿件要求使用A4纸双面打印，其中摘要之前部分使用单页打印。"
+% 另外oneside选项没经过调试，可能会存在问题。
+% 其余的设置在BitMasterThesis.cls里头，已使用学校规定的设置，无需更改。
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 宏包调用 %
+% 原来的宏包调用都是写在bitmaster-xetex.cls里的。
+% 经过修改后，% 除了一些必须的且无需更改的宏包仍留在bitmaster-xetex.cfg里面
+% （包括：natbib，hyperref，geometry，setspace，titletoc，ifthen，
+%		fancyhdr，fontspec，xltxtra，fontenc，mathptmx，ccaption）之外，
+%	其余的宏包调用都需要在这个主文档里写明（例如处理公式、表格和图标等的宏包）。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amssymb}% 数学公式和字体 %
+\usepackage{tensor}% 处理张量 %
+\numberwithin{equation}{section}% 以章节来编号公式 %
+\allowdisplaybreaks% 使得align环境公式可跨页 %
+\usepackage{bm}% \bm{<text>} Bold math symbols %
+%\usepackage{dcolumn}% Align table columns on decimal point  %
+%\usepackage{array}% dcolumn depends on array %
+\usepackage{graphicx}% 插入图片 %
+\usepackage{ulem}% underlining for emphasis %
+\usepackage{cancel}% Place lines through maths formulae %
+%\usepackage{setspace}% 保留标题行距，改变正文行距 %
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% newcommand，尽量不要用renewcommand % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\be}{\begin{equation}}
+\newcommand*{\ee}{\end{equation}}
+\newcommand*{\bea}{\begin{eqnarray}}
+\newcommand*{\eea}{\end{eqnarray}}
+\newcommand*{\p}{\partial}
+\newcommand*{\om}{\omega}
+\newcommand*{\Om}{\Omega}
+\newcommand*{\mc}{\mathcal}
+\newcommand*{\s}{\sigma}
+\newcommand*{\ts}{\tensor}
+\newcommand*{\g}{\gamma}
+\newcommand*{\al}{\alpha}
+\newcommand*{\bt}{\beta}
+\newcommand*{\Ga}{\Gamma}
+\newcommand*{\la}{\lambda}
+\newcommand*{\dt}{\delta}
+\renewcommand*{\cal}{\mathcal}
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 封面信息，需要修改，依照每个人的情况填写 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\classification{O412.1}% 中图分类号 %
+% O412.1：相对论；见 http://www.ztflh.com/
+
+\UDC{530}% UDC 分类号 %
+% 531.5：Gravity. Gravitation. Pendulums. Ballistics
+% 见 http://www.udcc.org/udcsummary
+
+\title{\LARGE{基于绝对平行时空的修改引力理论的一些研究}}% 标题 %
+\author{陈祖成}% 作者姓名 %
+\institute{物理学院}% 学院名称 %
+\advisor{韦浩教授}% 指导老师 %
+\chairman{未定教授}% 答辩委员会主席 %
+\degree{理学硕士}% 申请学位 %
+\major{理论物理}% 学科专业 %
+\school{北京理工大学}% 学位授予单位 %
+\defenddate{2015年1月}% 论文答辩日期 %
+
+\englishtitle{\LARGE{Some research of modified gravity theories
+based on teleparallel space-time}}% english title %
+\englishauthor{Zu-Cheng Chen}% Candidate Name %
+\englishinstitute{School of Physics}% School or Department %
+\englishadvisor{Prof. Hao Wei}% Faculty Mentor %
+\englishchairman{Prof. Unknown}% Chair, Thesis Committee
+\englishdegree{Master of Science}% Degree Applied %
+\englishmajor{Theoretical Physics}% Major %
+\englishschool{Beijing Institute of Technology}% Degree by %
+\englishdate{January, 2015}% The Date of Defence %
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 生成摘要之前的页面 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle% 生成中文封面及中文标题页 %
+
+\makeenglishtitle% 生成英文标题页 %
+
+\makeVerticalTitle% 打印竖排论文题目 %
+
+\makeDeclareOriginal% 研究成果声明和关于学位论文使用权的说明
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 设置页眉和页脚 % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{}
+\chead{\songti \zihao{5} 北京理工大学硕士学位论文}
+\rhead{}
+% 页眉: 宋体, 5号居中, “北京理工大学硕士学位论文”
+\lfoot{}
+\cfoot{\songti \zihao{5} \thepage}
+\rfoot{}
+% 页码:宋体, 5号页面底端居中
+
+% 在以下定义plain格式，是为了让目录首页及各章节的起始页也显示页眉 %
+\fancypagestyle{plain}{
+\fancyhf{}
+\lhead{}
+\chead{\songti \zihao{5} 北京理工大学硕士学位论文}
+\rhead{}
+\lfoot{}
+\cfoot{\songti \zihao{5} \thepage}
+\rfoot{}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 字体和行距 % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\zihao{-4}
+\songti
+\baselineskip=22pt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 摘要和目录等 % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+\pagenumbering{Roman}% 罗马数字标记页码 %
+
+\include{chapters/abstract}% 中英文摘要 %
+
+\tableofcontents% 生成目录 %
+
+%\listoftables% 生成表格索引 %
+%\addcontentsline{toc}{chapter}{\listtablename}% 将表格索引加入全文目录 %
+
+\listoffigures% 生成插图索引 %
+%\addcontentsline{toc}{chapter}{\listfigurename}% 将图索引加入全文目录 %
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 正文：各章节内容 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+
+\include{chapters/01Intro}
+\include{chapters/02TeleGra}
+\include{chapters/03PNA}
+\include{chapters/04ftMassiveGravity}
+\include{chapters/05Conclusions}
+\include{chapters/appendix} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 参考文献：请使用BibTex来生成，否则写bibitem将是及痛苦和麻烦的事情。
+% 学校的规范如下：
+% ” 按照国家有关标准GB/T 7714—2005《文后参考文献著录规则》进行著录。
+% 	对该项国家标准未列入的，但又为论文引用的其他类型文献,
+% 	可参照社会通用的格式著录。“
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{reference/GBT7714-2005NLang}
+{\zihao{5}
+\bibliography{reference/ref,reference/zotero}
+\addcontentsline{toc}{chapter}{参考文献}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 附加资料 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+\include{chapters/paper_list}% 攻读学位期间发表论文与研究成果清单 %
+\include{chapters/thanks}% 致谢 %
+
+\end{document}
